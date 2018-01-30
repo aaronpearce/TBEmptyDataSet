@@ -82,6 +82,10 @@ extension UIScrollView {
     fileprivate func emptyDataSetDescription() -> NSAttributedString? {
         return emptyDataSetDataSource?.descriptionForEmptyDataSet(in: self)
     }
+    
+    fileprivate func emptyDataSetButton() -> UIButton? {
+        return emptyDataSetDataSource?.buttonForEmptyDataSet(in: self)
+    }
 
     fileprivate func emptyDataSetImageTintColor() -> UIColor? {
         return emptyDataSetDataSource?.imageTintColorForEmptyDataSet(in: self)
@@ -233,6 +237,7 @@ extension UIScrollView {
 
             emptyDataView.titleLabel.attributedText = emptyDataSetTitle()
             emptyDataView.descriptionLabel.attributedText = emptyDataSetDescription()
+            emptyDataView.button = emptyDataSetButton()
         }
 
         emptyDataView.backgroundColor = emptyDataSetBackgroundColor()

@@ -12,7 +12,8 @@ public protocol TBEmptyDataSetDataSource {
     func imageForEmptyDataSet(in scrollView: UIScrollView) -> UIImage?
     func titleForEmptyDataSet(in scrollView: UIScrollView) -> NSAttributedString?
     func descriptionForEmptyDataSet(in scrollView: UIScrollView) -> NSAttributedString?
-
+    func buttonForEmptyDataSet(in scrollView: UIScrollView) -> UIButton?
+    
     func imageTintColorForEmptyDataSet(in scrollView: UIScrollView) -> UIColor?
     func backgroundColorForEmptyDataSet(in scrollView: UIScrollView) -> UIColor?
 
@@ -47,6 +48,10 @@ public extension TBEmptyDataSetDataSource {
     }
 
     func descriptionForEmptyDataSet(in scrollView: UIScrollView) -> NSAttributedString? {
+        return nil
+    }
+    
+    func buttonForEmptyDataSet(in scrollView: UIScrollView) -> UIButton? {
         return nil
     }
 
