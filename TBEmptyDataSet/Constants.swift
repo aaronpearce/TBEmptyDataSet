@@ -40,4 +40,5 @@ internal struct DefaultValues {
     static let verticalSpaces = [verticalSpace, verticalSpace]
     static let titleMargin: CGFloat = 15
     static let descriptionMargin: CGFloat = 15
+    static let buttonMargin: CGFloat = 15
 }

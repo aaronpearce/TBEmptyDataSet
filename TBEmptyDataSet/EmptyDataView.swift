@@ -14,6 +14,7 @@ internal class EmptyDataView: UIView {
         static let imageView = "imageView"
         static let titleLabel = "titleLabel"
         static let descriptionLabel = "descriptionLabel"
+        static let button = "button"
         static let customView = "customView"
     }
 
@@ -60,6 +61,19 @@ internal class EmptyDataView: UIView {
         self.contentView.addSubview(descriptionLabel)
         return descriptionLabel
     }()
+    
+    internal var button: UIButton? {
+        willSet {
+            if let button = button {
+                button.removeFromSuperview()
+            }
+        }
+        didSet {
+            if let button = button {
+                contentView.addSubview(button)
+            }
+        }
+    }
 
     internal var customView: UIView? {
         willSet {
@@ -78,6 +92,7 @@ internal class EmptyDataView: UIView {
     internal var verticalSpaces = DefaultValues.verticalSpaces
     internal var titleMargin = DefaultValues.titleMargin
     internal var descriptionMargin = DefaultValues.descriptionMargin
+    internal var buttonMargin = DefaultValues.buttonMargin
 
     // MARK: - Helper
     fileprivate func shouldShowImageView() -> Bool {
@@ -96,6 +111,10 @@ internal class EmptyDataView: UIView {
             return description.length > 0
         }
         return false
+    }
+    
+    fileprivate func shouldShowButton() -> Bool {
+        return button != nil
     }
 
     fileprivate func removeAllConstraints() {
@@ -189,6 +208,20 @@ internal class EmptyDataView: UIView {
                 contentView.addConstraint(NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .greaterThanOrEqual, toItem: descriptionLabel, attribute: .trailing, multiplier: 1, constant: descriptionMargin))
             } else {
                 descriptionLabel.removeFromSuperview()
+            }
+            
+            if let button = button {
+                if button.superview == nil {
+                    contentView.addSubview(button)
+                }
+                let viewString = ViewStrings.button
+                viewStrings.append(viewString)
+                views[viewString] = button
+                contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0))
+                contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .leading, relatedBy: .greaterThanOrEqual, toItem: contentView, attribute: .leading, multiplier: 1, constant: buttonMargin))
+                contentView.addConstraint(NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .greaterThanOrEqual, toItem: button, attribute: .trailing, multiplier: 1, constant: buttonMargin))
+            } else {
+                button?.removeFromSuperview()
             }
 
             var verticalFormat = String()
