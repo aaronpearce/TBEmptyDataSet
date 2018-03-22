@@ -244,6 +244,7 @@ extension UIScrollView {
         emptyDataView.isHidden = false
         emptyDataView.clipsToBounds = true
         emptyDataView.tapGesture?.isEnabled = emptyDataSetTapEnabled()
+        emptyDataView.isUserInteractionEnabled = emptyDataSetTapEnabled()
         isScrollEnabled = emptyDataSetScrollEnabled()
 
         emptyDataView.setConstraints()
